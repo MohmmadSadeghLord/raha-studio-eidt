@@ -1,0 +1,532 @@
+/* ============================================================
+   ADMIN ORDERS PANEL - SCOPED STYLES
+   ============================================================ */
+
+#raha-admin-orders-app {
+    /* ---------- Theme Tokens ---------- */
+    --ink: #14110f;
+    --ink-soft: #41525d;
+    --accent: #0c4a6e;
+    --sun: #facc15;
+    --bg: #e0f2fe;
+    --surface: #ffffff;
+    --muted: #41525d;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+
+    --font-body: 'Vazirmatn', system-ui, sans-serif;
+    --font-display: 'Sahel', 'Vazirmatn', system-ui, sans-serif;
+
+    --r: 8px;
+    --bd: 2px solid var(--ink);
+    
+    --sh-1: 3px 3px 0 var(--ink);
+    --sh-2: 4px 4px 0 var(--ink);
+    --sh-3: 6px 6px 0 var(--ink);
+    
+    --t: 150ms ease;
+
+    /* ---------- Base ---------- */
+    font-family: var(--font-body);
+    background: #f8fafc;
+    color: var(--ink);
+    padding: 2rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+
+    /* اصلاح اسکرول افقی */
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+#raha-admin-orders-app * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* ---------- Header & Stats ---------- */
+#raha-admin-orders-app .admin-header {
+    max-width: 1200px;
+    margin: 0 auto 2.5rem;
+}
+
+#raha-admin-orders-app .header-title {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+}
+
+#raha-admin-orders-app .header-title h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    color: var(--accent);
+    margin: 0;
+}
+
+#raha-admin-orders-app .header-title .badge {
+    background: var(--sun);
+    border: var(--bd);
+    border-radius: 4px;
+    padding: .2rem .6rem;
+    font-size: .8rem;
+    font-weight: 900;
+    box-shadow: 2px 2px 0 var(--ink);
+    color: var(--ink);
+}
+
+#raha-admin-orders-app .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+#raha-admin-orders-app .stat-card {
+    background: var(--surface);
+    border: var(--bd);
+    border-radius: var(--r);
+    box-shadow: var(--sh-1);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#raha-admin-orders-app .stat-icon {
+    width: 48px; height: 48px;
+    background: var(--bg);
+    border: var(--bd);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+#raha-admin-orders-app .stat-info h3 {
+    font-size: .85rem;
+    font-weight: 800;
+    color: var(--muted);
+    margin-bottom: .25rem;
+}
+
+#raha-admin-orders-app .stat-info .value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.2;
+}
+
+/* ---------- Controls (Search & Filter) ---------- */
+#raha-admin-orders-app .admin-controls {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#raha-admin-orders-app .search-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+#raha-admin-orders-app .search-box input {
+    width: 100%;
+    height: 48px;
+    padding: 0 1rem 0 2.5rem;
+    background: var(--surface);
+    border: var(--bd);
+    border-radius: var(--r);
+    box-shadow: var(--sh-1);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--ink);
+    outline: none;
+    transition: box-shadow var(--t);
+}
+
+#raha-admin-orders-app .search-box input:focus {
+    box-shadow: var(--sh-2);
+}
+
+#raha-admin-orders-app .search-box::before {
+    content: '🔍';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+/* ---------- Orders Grid ---------- */
+#raha-admin-orders-app .orders-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ---------- Order Card ---------- */
+#raha-admin-orders-app .order-card {
+    background: var(--surface);
+    border: var(--bd);
+    border-radius: var(--r);
+    box-shadow: var(--sh-1);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: transform var(--t), box-shadow var(--t);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+#raha-admin-orders-app .order-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sh-2);
+}
+
+#raha-admin-orders-app .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .5rem;
+}
+
+#raha-admin-orders-app .client-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: .2rem;
+}
+
+#raha-admin-orders-app .client-info p {
+    font-size: .8rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+#raha-admin-orders-app .status-badge {
+    padding: .25rem .5rem;
+    border: var(--bd);
+    border-radius: 4px;
+    font-size: .7rem;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+#raha-admin-orders-app .status-new { background: var(--sun); color: var(--ink); }
+#raha-admin-orders-app .status-review { background: var(--bg); color: var(--accent); }
+#raha-admin-orders-app .status-done { background: #dcfce7; color: #166534; }
+#raha-admin-orders-app .status-canceled { background: #fee2e2; color: #7f1d1d; }
+
+#raha-admin-orders-app .card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: auto;
+    padding-top: .75rem;
+    border-top: 2px dashed rgba(20,17,15,.1);
+}
+
+#raha-admin-orders-app .detail-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    padding: .2rem .5rem;
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* ============================================================
+   MODAL (جزئیات سفارش)
+   ============================================================ */
+#raha-admin-orders-app .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,17,15,.6);
+    backdrop-filter: blur(4px);
+    z-index: 100000;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+#raha-admin-orders-app .modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    #raha-admin-orders-app .modal-overlay { align-items: center; }
+}
+
+#raha-admin-orders-app .modal-content {
+    background: var(--surface);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border: var(--bd);
+    border-radius: var(--r) var(--r) 0 0;
+    box-shadow: 0 -6px 0 var(--ink);
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+#raha-admin-orders-app .modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    #raha-admin-orders-app .modal-content {
+        border-radius: var(--r);
+        box-shadow: var(--sh-3);
+        max-height: 85vh;
+        transform: scale(.95);
+        opacity: 0;
+        transition: transform .2s, opacity .2s;
+    }
+    #raha-admin-orders-app .modal-overlay.active .modal-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#raha-admin-orders-app .modal-header {
+    padding: 1rem 1.25rem;
+    border-bottom: var(--bd);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--sun);
+    border-radius: var(--r) var(--r) 0 0;
+}
+
+#raha-admin-orders-app .modal-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--ink);
+    margin: 0;
+}
+
+#raha-admin-orders-app .close-btn {
+    background: #fff;
+    border: var(--bd);
+    border-radius: 4px;
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    cursor: pointer;
+    font-weight: 900;
+    transition: transform var(--t);
+    color: var(--ink);
+}
+
+#raha-admin-orders-app .close-btn:hover { transform: scale(1.1); }
+
+#raha-admin-orders-app .modal-body {
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#raha-admin-orders-app .detail-section {
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+#raha-admin-orders-app .detail-section-title {
+    font-family: var(--font-display);
+    font-size: .9rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-bottom: 1px dashed rgba(20,17,15,.2);
+    padding-bottom: .4rem;
+}
+
+#raha-admin-orders-app .detail-section-content {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+  
+#raha-admin-orders-app .modal-footer {
+    padding: 1rem 1.25rem;
+    border-top: var(--bd);
+    background: var(--surface);
+    display: flex;
+    gap: .5rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    border-radius: 0 0 var(--r) var(--r);
+}
+
+#raha-admin-orders-app .btn {
+    padding: .6rem 1rem;
+    border: var(--bd);
+    border-radius: var(--r);
+    font-family: var(--font-display);
+    font-size: .85rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform var(--t), box-shadow var(--t);
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    text-decoration: none;
+}
+
+#raha-admin-orders-app .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--sh-1);
+}
+#raha-admin-orders-app .btn-primary:hover { 
+    transform: translate(-2px, -2px); 
+    box-shadow: var(--sh-2); 
+}
+
+#raha-admin-orders-app .btn-secondary {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--sh-1);
+}
+#raha-admin-orders-app .btn-secondary:hover { 
+    transform: translate(-2px, -2px); 
+    box-shadow: var(--sh-2); 
+}
+
+/* ---------- Empty State ---------- */
+#raha-admin-orders-app .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--surface);
+    border: var(--bd);
+    border-radius: var(--r);
+    box-shadow: var(--sh-1);
+}
+#raha-admin-orders-app .empty-state h3 { 
+    font-size: 1.2rem; 
+    color: var(--muted); 
+    margin-bottom: .5rem; 
+}
+
+/* ---------- Print ---------- */
+@media print {
+    #raha-admin-orders-app { padding: 0; margin: 0; background: #fff; }
+    #raha-admin-orders-app .admin-header, 
+    #raha-admin-orders-app .admin-controls, 
+    #raha-admin-orders-app .orders-grid { display: none; }
+    
+    #raha-admin-orders-app .modal-overlay { 
+        position: static; 
+        display: block !important; 
+        opacity: 1 !important; 
+        background: none; 
+    }
+    #raha-admin-orders-app .modal-content { 
+        box-shadow: none; 
+        border: none; 
+        max-height: none; 
+        max-width: 100%;
+    }
+    #raha-admin-orders-app .modal-footer { display: none; }
+    #raha-admin-orders-app .modal-header { border-bottom: 2px solid #000; background: none; }
+}
+
+
+
+
+/* ============================================================
+   NEW INTERACTIVE & BREADCRUMB STYLES
+   ============================================================ */
+#raha-admin-orders-app .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--bd);
+    border-radius: var(--r);
+    padding: 0.6rem 1rem;
+    box-shadow: var(--sh-1);
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#raha-admin-orders-app .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--t);
+}
+#raha-admin-orders-app .breadcrumb a:hover { color: var(--ink); }
+#raha-admin-orders-app .breadcrumb span { color: var(--muted); }
+
+/* فرم‌های داخل مودال */
+#raha-admin-orders-app .admin-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    margin-top: 4px;
+    outline: none;
+}
+#raha-admin-orders-app .admin-input:focus {
+    box-shadow: 2px 2px 0 var(--sun);
+    transform: translate(-1px, -1px);
+}
+
+/* پیام موفقیت */
+#raha-admin-orders-app .ajax-message {
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background: #dcfce7;
+    color: #14532d;
+    border: 2px solid #14532d;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 14px;
+    box-shadow: 4px 4px 0 #14532d;
+    z-index: 100001;
+}
