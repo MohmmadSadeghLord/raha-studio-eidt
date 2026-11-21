@@ -1,0 +1,118 @@
+/* ============================================================
+   USER PANEL
+   ============================================================ */
+.raha-panel { padding-block: 32px 64px; }
+.raha-panel__layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 860px) { .raha-panel__layout { grid-template-columns: 1fr; } }
+
+.raha-panel__side {
+    background: var(--surface); border: var(--bd); border-radius: var(--r);
+    box-shadow: var(--sh-1); padding: 16px; position: sticky; top: 88px;
+}
+@media (max-width: 860px) { .raha-panel__side { position: static; } }
+.raha-panel__user { display: flex; gap: 10px; align-items: center; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 2px dashed rgba(20,17,15,.15); }
+.raha-panel__avatar {
+    display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--sun); border: var(--bd); border-radius: 50%;
+    font-weight: 900; font-size: 16px;
+}
+.raha-panel__user strong { display: block; font-size: 13px; font-weight: 900; }
+.raha-panel__user small { display: block; font-size: 10.5px; color: var(--muted); }
+
+.raha-panel__nav { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+.raha-panel__nav a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 12px; font-size: 12.5px; font-weight: 800;
+    color: var(--ink-soft); border: 2px solid transparent; border-radius: 6px;
+    transition: background var(--t), color var(--t), border-color var(--t);
+}
+.raha-panel__nav a:hover { background: var(--bg); color: var(--accent); }
+.raha-panel__nav a.is-active { background: var(--accent); color: #fff; border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.raha-panel__logout { display: block; padding: 9px 12px; font-size: 12px; font-weight: 800; color: #dc2626; border-radius: 6px; text-align: center; }
+.raha-panel__logout:hover { background: #fee2e2; }
+
+.raha-panel__main { min-width: 0; }
+
+.raha-tab { display: flex; flex-direction: column; gap: 20px; }
+.raha-tab__head h1 { margin: 0; font-size: clamp(18px, 3vw, 26px); font-weight: 900; color: var(--accent); }
+.raha-tab__head p { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.raha-tab__subtitle { font-size: 15px; font-weight: 900; color: var(--accent); margin: 16px 0 8px; }
+
+.raha-dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.raha-stat {
+    display: flex; gap: 12px; align-items: center;
+    padding: 14px; background: var(--surface);
+    border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-1);
+}
+.raha-stat__icon { font-size: 24px; }
+.raha-stat small { display: block; font-size: 10.5px; font-weight: 800; color: var(--muted); }
+.raha-stat strong { display: block; font-size: 18px; font-weight: 900; color: var(--accent); }
+
+.raha-dash-cta {
+    padding: 20px; background: var(--sun);
+    border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-2);
+}
+.raha-dash-cta h2 { margin: 0 0 6px; font-size: 16px; font-weight: 900; }
+.raha-dash-cta p { margin: 0 0 14px; font-size: 12px; }
+
+.raha-badge {
+    display: inline-block; padding: 2px 8px;
+    font-size: 10.5px; font-weight: 900;
+    background: #fff; border: 2px solid var(--ink); border-radius: 4px;
+    white-space: nowrap;
+}
+.raha-badge--new      { background: var(--sun); }
+.raha-badge--review   { background: #e0f2fe; color: var(--accent); }
+.raha-badge--progress { background: #7dd3fc; }
+.raha-badge--done     { background: #dcfce7; color: #14532d; }
+.raha-badge--canceled { background: #fee2e2; color: #7f1d1d; }
+
+.raha-order-list { display: flex; flex-direction: column; gap: 10px; }
+.raha-order-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 14px; background: var(--surface);
+    border: 2px solid var(--ink); border-radius: 6px; box-shadow: 2px 2px 0 var(--ink);
+}
+.raha-order-row small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.raha-order-card {
+    background: var(--surface); border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-1);
+    padding: 16px;
+}
+.raha-order-card__head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px dashed rgba(20,17,15,.15); flex-wrap: wrap; }
+.raha-order-card__head small { font-size: 11px; color: var(--muted); }
+.raha-order-card__head > div { display: flex; align-items: center; gap: 8px; }
+.raha-order-card__body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 600px) { .raha-order-card__body { grid-template-columns: 1fr; } }
+.raha-order-card__body > div { padding: 8px 10px; background: var(--bg); border-radius: 6px; }
+.raha-order-card__body span { display: block; font-size: 10.5px; font-weight: 800; color: var(--muted); margin-bottom: 3px; }
+.raha-order-card__body strong { font-size: 12.5px; font-weight: 900; }
+
+.raha-empty { padding: 40px 20px; text-align: center; background: var(--surface); border: 2px dashed var(--line); border-radius: var(--r); }
+.raha-empty__icon { font-size: 48px; margin-bottom: 8px; }
+.raha-empty h2 { margin: 0 0 6px; font-size: 15px; font-weight: 900; color: var(--accent); }
+.raha-empty p { margin: 0 0 16px; font-size: 12.5px; color: var(--muted); }
+
+.raha-table-wrap { overflow-x: auto; border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-1); background: var(--surface); }
+.raha-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 600px; }
+.raha-table th, .raha-table td { padding: 10px 12px; text-align: right; border-bottom: 2px solid rgba(20,17,15,.1); }
+.raha-table thead th { background: var(--bg); font-size: 11px; font-weight: 900; color: var(--accent); white-space: nowrap; }
+.raha-table tbody tr:last-child td { border-bottom: 0; }
+
+.raha-ticket-create { margin-bottom: 16px; background: var(--surface); border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-1); overflow: hidden; }
+.raha-ticket-create__summary { padding: 12px 16px; cursor: pointer; font-size: 12.5px; font-weight: 900; color: var(--accent); list-style: none; }
+.raha-ticket-create__summary::-webkit-details-marker { display: none; }
+.raha-ticket-create__form { padding: 16px; border-top: 2px dashed rgba(20,17,15,.15); }
+
+.raha-ticket-list { display: flex; flex-direction: column; gap: 10px; }
+.raha-ticket { padding: 14px; background: var(--surface); border: 2px solid var(--ink); border-radius: 6px; box-shadow: 2px 2px 0 var(--ink); }
+.raha-ticket__head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.raha-ticket__head strong { font-size: 13px; font-weight: 900; }
+.raha-ticket__meta { margin: 4px 0 8px; font-size: 11px; color: var(--muted); }
+.raha-ticket__content { font-size: 12.5px; line-height: 1.8; color: var(--ink-soft); }
+.raha-ticket__replies { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(20,17,15,.15); }
+.raha-ticket__reply { padding: 8px 12px; margin-bottom: 6px; background: var(--bg); border-radius: 6px; font-size: 12px; }
+.raha-ticket__reply strong { display: block; font-size: 11.5px; color: var(--accent); margin-bottom: 2px; }
+.raha-ticket__reply small { display: block; font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+
+.raha-profile-form { background: var(--surface); border: var(--bd); border-radius: var(--r); box-shadow: var(--sh-1); padding: 20px; max-width: 500px; }

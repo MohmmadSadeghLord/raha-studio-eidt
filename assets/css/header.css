@@ -1,0 +1,482 @@
+/* ============================================================
+   RAHA STUDIO — HEADER STYLES (MATCHING PROTOTYPE)
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+:root{
+  --bg:#e0f2fe;
+  --surface:#fff;
+  --ink:#14110f;
+  --accent:#0c4a6e;
+  --pop:#facc15;
+  --radius:10px;
+  --sh-1:3px 3px 0 var(--ink);
+  --sh-2:4px 4px 0 var(--ink);
+  --sh-3:7px 7px 0 var(--ink);
+  --t:150ms ease;
+  --lift:translate(-3px,-3px);
+  --container:1200px;
+  --gutter:24px;
+  --header-h:100px;
+  --header-max:2000px;
+  --header-max-scrolled:920px;
+  --pill-h:70px;
+}
+
+
+/* ------------------------------------------------------ */
+
+/* ---------- Header Base ---------- */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:var(--header-h);
+  background:transparent;
+  pointer-events:none;
+  transition: top 0.3s ease;
+}
+
+/* اصلاح موقعیت هدر در صورت وجود نوار مدیریت وردپرس */
+.admin-bar .site-header { top: 32px; }
+@media screen and (max-width: 782px) {
+    .admin-bar .site-header { top: 46px; }
+}
+
+.header-shell{
+  position:relative;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.header-card{
+  width:100%;
+  max-width:var(--header-max);
+  height:100%;
+  background:var(--bg);
+  border-bottom:4px solid var(--accent);
+  border-radius:0;
+  pointer-events:auto;
+  transition:
+    max-width .3s ease,
+    height .3s ease,
+    border-radius .3s ease,
+    border .3s ease,
+    box-shadow .3s ease,
+    margin-top .3s ease;
+}
+
+/* اعمال دقیق فاصله‌های پروتوتایپ */
+.header-inner{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  width: 100%;
+  max-width: var(--container); /* عرض ۱۲۰۰ پیکسل */
+  margin-inline: auto;
+  padding-inline: var(--gutter); /* فاصله ۲۴ پیکسلی از چپ و راست */
+  box-sizing: border-box;
+}
+
+.logo{
+  display:flex;align-items:baseline;gap:8px;
+  font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--accent);
+  flex-shrink:0;
+}
+.logo small{font-size:11px;font-weight:800;letter-spacing:2px;opacity:.75}
+
+/* ---------- Main Nav ---------- */
+.main-nav{display:flex;gap:10px;align-items:center}
+.nav-link{
+  display:inline-flex;align-items:center;
+  height:44px;padding:0 14px;
+  font-size:13.5px;font-weight:800;color:var(--accent);
+  border:2px solid transparent;border-radius:var(--radius);
+  transition:background var(--t),color var(--t),border-color var(--t);
+}
+.nav-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.nav-item{position:relative}
+.nav-trigger{
+  display:inline-flex;align-items:center;gap:8px;
+  height:44px;padding:0 16px;
+  font-size:13.5px;font-weight:800;
+  background:#fff;color:var(--accent);
+  border:2px solid var(--accent);border-radius:var(--radius);
+  box-shadow:var(--sh-2);
+  transition:transform var(--t),box-shadow var(--t),background var(--t),color var(--t);
+  white-space:nowrap;
+}
+.nav-trigger:hover,
+.nav-trigger[aria-expanded="true"]{
+  transform:var(--lift);
+  box-shadow:var(--sh-3);
+  background:var(--accent);color:#fff;
+}
+.nav-trigger .chev{transition:transform .2s ease}
+.nav-trigger[aria-expanded="true"] .chev{transform:rotate(180deg)}
+
+.header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.header-cta{
+  display:inline-flex;align-items:center;height:48px;padding:0 22px;
+  background:var(--accent);color:#fff;
+  font-size:13.5px;font-weight:800;
+  border:2px solid var(--accent);border-radius:var(--radius);
+  box-shadow:var(--sh-2);
+  transition:transform var(--t),box-shadow var(--t);
+}
+.header-cta:hover{transform:var(--lift);box-shadow:var(--sh-3)}
+
+.burger{
+  display:none;width:48px;height:48px;
+  background:#fff;color:var(--accent);
+  border:2px solid var(--accent);border-radius:var(--radius);
+  box-shadow:var(--sh-2);
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  transition:transform var(--t),box-shadow var(--t);
+}
+.burger:hover{transform:var(--lift);box-shadow:var(--sh-3)}
+.burger span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+
+.header-icon-btn {
+    display: grid; place-items: center;
+    width: 48px; height: 48px;
+    background: #fff; color: var(--accent);
+    border: 2px solid var(--accent); border-radius: var(--radius);
+    box-shadow: var(--sh-2);
+    transition: transform var(--t), box-shadow var(--t);
+}
+
+/* ---------- Scrolled State (Desktop) ---------- */
+@media (min-width: 961px) {
+  .site-header.is-scrolled .header-card {
+    max-width: var(--header-max-scrolled);
+    height: var(--pill-h);
+    border: 2px solid var(--accent);
+    border-bottom-width: 4px;
+    border-radius: var(--radius);
+    box-shadow: var(--sh-2);
+    margin-top: 16px;
+  }
+}
+
+/* ---------- Panels ---------- */
+.nav-panel{
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .2s ease,visibility 0s .2s,transform .2s ease;
+  z-index:150;
+}
+.nav-panel.is-open{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity .2s ease,visibility 0s 0s,transform .2s ease;
+}
+
+.nav-panel--mega{
+  position:absolute;
+  top:100%;
+  left:50%;
+  width:min(980px, calc(100% - 32px));
+  padding-top:14px;
+  transform:translateX(-50%) translateY(-4px);
+}
+.nav-panel--mega.is-open{
+  transform:translateX(-50%) translateY(0);
+}
+
+.nav-panel--dropdown{
+  position:absolute;
+  top:100%;right:0;
+  padding-top:14px;
+  transform:translateY(-4px);
+}
+.nav-panel--dropdown.is-open{transform:translateY(0)}
+
+/* ---------- Mega Content ---------- */
+.mega{
+  background:var(--surface);
+  border:2px solid var(--ink);border-radius:var(--radius);
+  box-shadow:var(--sh-2);
+  overflow:hidden;
+}
+.mega__grid{display:flex;flex-wrap:wrap;}
+.mega__col{flex:1 1 200px;min-width:0;padding:32px 28px;border-inline-start:2px solid var(--ink)}
+.mega__col:first-child{border-inline-start:0}
+.mega__title{
+  margin:0 0 14px;padding:0 12px;
+  font-size:10px;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--accent);opacity:.7;
+}
+.mega__link{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px; font-size:13.5px;font-weight:800;color:var(--ink);
+  border-radius:6px; transition:background .12s,color .12s;
+}
+.mega__link:hover{background:var(--accent);color:#fff}
+.mega__link-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);flex-shrink:0; transition:background .12s;
+}
+.mega__link:hover .mega__link-dot{background:var(--pop)}
+.mega__link-count{
+  margin-inline-start:auto; font-size:11px;font-weight:800;
+  padding:2px 8px; background:var(--bg);color:var(--accent);
+  border-radius:10px; transition:background .12s,color .12s;
+}
+.mega__link:hover .mega__link-count{background:var(--pop);color:var(--ink)}
+
+.mega__feature{
+  flex: 0 0 280px;
+  padding:32px; display:flex;flex-direction:column;gap:16px;
+  background:#fef3c7; border-inline-start:2px solid var(--ink);
+  transition:background .15s;
+}
+.mega__feature:hover{background:var(--pop)}
+.mega__feature-media{
+  aspect-ratio:4/3; background:var(--accent);
+  border:2px solid var(--ink);border-radius:6px;
+  position:relative;overflow:hidden;
+}
+.mega__feature-media img { width: 100%; height: 100%; object-fit: cover; }
+.mega__feature-body{display:flex;flex-direction:column;gap:6px}
+.mega__feature-eyebrow{
+  font-size:10px;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--accent);
+}
+.mega__feature-title{
+  margin:0;font-size:18px;font-weight:900;line-height:1.2;
+  letter-spacing:-.01em;color:var(--ink);
+}
+.mega__feature-desc{margin:0;font-size:12.5px;font-weight:500;color:var(--ink);opacity:.7}
+.mega__feature-cta{
+  margin-top:4px;font-size:12.5px;font-weight:800;
+  text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:2px;color:var(--accent);
+}
+
+/* ---------- Dropdown Content ---------- */
+.dropdown{
+  width:340px; background:var(--surface);
+  border:2px solid var(--ink);border-radius:var(--radius);
+  box-shadow:var(--sh-2); padding:8px;
+}
+.dropdown__link{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 12px; border-radius:6px; transition:background .12s;
+}
+.dropdown__link:hover{background:#f1f5f9}
+.dropdown__icon{
+  width:40px;height:40px; display:grid;place-items:center;
+  background:var(--bg);color:var(--accent);
+  border-radius:8px;flex-shrink:0; transition:background .12s,color .12s;
+}
+.dropdown__icon .dashicons {
+    width: 24px; height: 24px; font-size: 24px;
+}
+.dropdown__link:hover .dropdown__icon{background:var(--accent);color:#fff}
+.dropdown__text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dropdown__title{font-size:13.5px;font-weight:800;color:var(--ink)}
+.dropdown__desc{font-size:11.5px;font-weight:500;color:var(--ink);opacity:.6}
+
+/* ---------- User Menu (Avatar + Dropdown) ---------- */
+.raha-user-menu { 
+    position: relative; 
+    z-index: 200;
+}
+.raha-user-toggle {
+    display: grid; place-items: center; width: 48px; height: 48px;
+    background: #fff; color: var(--accent);
+    border: 2px solid var(--accent); border-radius: var(--radius);
+    box-shadow: var(--sh-2); transition: transform var(--t), box-shadow var(--t);
+    cursor: pointer;
+}
+.raha-user-toggle:hover { transform: var(--lift); box-shadow: var(--sh-3); }
+.raha-user-avatar {
+    display: grid; place-items: center; width: 32px; height: 32px;
+    background: var(--pop); color: var(--ink);
+    border-radius: 50%; font-weight: 900; font-size: 14px;
+}
+.raha-user-dropdown {
+    position: absolute; 
+    top: calc(100% + 14px); 
+    left: 0; /* باز شدن به سمت راست تا از صفحه بیرون نزند */
+    right: auto;
+    width: 240px; background: var(--surface);
+    border: 2px solid var(--ink); border-radius: var(--radius);
+    box-shadow: var(--sh-2); padding: 8px;
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: all 0.2s ease; 
+    z-index: 9999;
+}
+.raha-user-menu.is-open .raha-user-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+.raha-user-dropdown__head {
+    padding: 10px 12px; border-bottom: 2px dashed rgba(20,17,15,.1); margin-bottom: 6px;
+}
+.raha-user-dropdown__head strong { display: block; font-size: 13px; color: var(--ink); }
+.raha-user-dropdown__head small { display: block; font-size: 11px; color: var(--muted); }
+.raha-user-dropdown a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; font-size: 13px; font-weight: 700;
+    color: var(--ink); border-radius: 6px; transition: background 0.12s;
+}
+.raha-user-dropdown a:hover { background: var(--bg); color: var(--accent); }
+.raha-user-dropdown a.is-danger { color: #dc2626; }
+.raha-user-dropdown a.is-danger:hover { background: #fee2e2; }
+.raha-user-dropdown hr { border: 0; border-top: 2px dashed rgba(20,17,15,.1); margin: 6px 0; }
+
+/* ---------- Drawer (Mobile) ---------- */
+.drawer-overlay{
+  position:fixed;inset:0; background:rgba(20,17,15,.5);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .25s ease,visibility 0s .25s;
+  z-index:200;
+}
+.drawer-overlay.is-open{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity .25s ease,visibility 0s 0s;
+}
+/* تغییر جهت به چپ */
+.drawer{
+  position:fixed;top:0;bottom:0;left:0; width:min(380px,90vw);
+  background:var(--bg); border-inline-end:4px solid var(--accent);
+  z-index:210; transform:translateX(-100%);
+  transition:transform .28s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column; overflow-y:auto;
+}
+.drawer.is-open{transform:translateX(0)}
+.drawer__header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px; border-bottom:2px solid var(--accent);
+}
+.drawer__logo{font-size:22px;font-weight:900;color:var(--accent);letter-spacing:-.5px}
+.drawer__close{
+  width:40px;height:40px; display:grid;place-items:center;
+  background:#fff;color:var(--accent); border:2px solid var(--accent);border-radius:8px;
+  box-shadow:var(--sh-1); transition:transform .15s,box-shadow .15s;
+  cursor: pointer;
+}
+.drawer__close:hover{transform:translate(-2px,-2px);box-shadow:var(--sh-2)}
+
+/* جستجو در منوی موبایل */
+.drawer__search {
+    padding: 16px 24px;
+    border-bottom: 2px dashed rgba(20,17,15,.15);
+}
+.drawer__search form {
+    display: flex;
+    align-items: stretch;
+    height: 48px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--sh-1);
+    transition: transform var(--t), box-shadow var(--t);
+    overflow: hidden;
+}
+.drawer__search form:focus-within {
+    transform: translate(-1px, -1px);
+    box-shadow: var(--sh-2);
+}
+.drawer__search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    outline: none;
+    -webkit-appearance: none;
+}
+.drawer__search input::placeholder {
+    color: var(--muted);
+    opacity: .6;
+    font-weight: 500;
+}
+.drawer__search button {
+    flex-shrink: 0;
+    width: 48px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-inline-start: 2px solid var(--ink); 
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background var(--t);
+    padding: 0;
+}
+.drawer__search button:hover {
+    background: var(--pop);
+    color: var(--ink);
+}
+
+.drawer__nav{padding:16px;display:flex;flex-direction:column;gap:4px; flex: 1;}
+.drawer__link{
+  display:flex;align-items:center; padding:14px 16px;
+  font-size:14.5px;font-weight:800;color:var(--accent);
+  border-radius:8px; transition:background .12s;
+}
+.drawer__link:hover{background:rgba(12,74,110,.08)}
+.drawer__group{border-radius:8px;transition:background .12s}
+.drawer__group[open]{background:rgba(12,74,110,.05)}
+.drawer__group summary{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px; font-size:14.5px;font-weight:800;color:var(--accent);
+  cursor:pointer;border-radius:8px; list-style:none;
+}
+.drawer__group summary::-webkit-details-marker{display:none}
+.drawer__group summary::after{content:'+';font-size:18px;font-weight:900;transition:transform .2s}
+.drawer__group[open] summary::after{content:'−'}
+.drawer__sub{padding:4px 16px 12px;display:flex;flex-direction:column;gap:2px}
+.drawer__sub a{
+  padding:10px 12px; font-size:13.5px;font-weight:500;color:var(--ink);
+  border-radius:6px; transition:background .12s,color .12s;
+}
+.drawer__sub a:hover{background:var(--accent);color:#fff}
+
+/* دکمه‌های پایین منو */
+.drawer__footer { 
+    padding: 16px 24px; 
+    border-top: 2px dashed rgba(20,17,15,.15); 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.drawer__cta{
+  display:flex;align-items:center;justify-content:center;
+  height:52px; background:var(--accent);color:#fff;
+  font-size:14px;font-weight:800; border:2px solid var(--ink);border-radius:var(--radius);
+  box-shadow:var(--sh-2); width: 100%; text-align: center;
+  transition: transform var(--t), box-shadow var(--t), background var(--t);
+}
+.drawer__cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sh-3);
+}
+.drawer__cta--ghost {
+    background: var(--surface);
+    color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  :root{--header-h:80px}
+  .main-nav,.header-cta,.raha-user-menu {display:none}
+  .burger{display:flex}
+  .header-icon-btn { display: none; }
+  .nav-panel--mega,.nav-panel--dropdown{display:none!important}
+  .logo{font-size:22px}
+}
+@media (max-width:640px){
+  .logo small{font-size:10px;letter-spacing:1px}
+}

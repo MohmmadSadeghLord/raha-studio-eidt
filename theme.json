@@ -1,0 +1,20 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {
+        "color": {
+            "custom": false,
+            "customGradient": false,
+            "palette": [
+                { "slug": "ink",     "color": "#14110f", "name": "مشکی" },
+                { "slug": "accent",  "color": "#0c4a6e", "name": "سرمه‌ای" },
+                { "slug": "sun",     "color": "#facc15", "name": "زرد" },
+                { "slug": "bg",      "color": "#e0f2fe", "name": "آبی روشن" },
+                { "slug": "surface", "color": "#ffffff", "name": "سطح" }
+            ]
+        },
+        "typography": {
+            "customFontSize": true
+        }
+    }
+}
