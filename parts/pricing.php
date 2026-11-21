@@ -80,12 +80,12 @@ $custom_url  = raha_opt('pricing_custom_btn_url', '#contact');
       </div>
     </div>
 
-    <!-- Monthly Services -->
+    <!-- Other Services -->
     <?php if (!empty($monthly)) : ?>
-    <div class="pkgs__monthly" role="region" aria-label="خدمات ماهانه">
+    <div class="pkgs__monthly" role="region" aria-label="خدمات دیگر">
       <header class="pkgs__monthly-head">
-        <h3 class="pkgs__monthly-title">خدمات ماهانه</h3>
-        <span class="pkgs__monthly-subtitle">اشتراکی، بدون قرارداد بلندمدت</span>
+        <h3 class="pkgs__monthly-title">خدمات دیگر</h3>
+        <span class="pkgs__monthly-subtitle">خدمات تکمیلی و تخصصی</span>
       </header>
 
       <?php foreach ($monthly as $m) : 
@@ -109,7 +109,6 @@ $custom_url  = raha_opt('pricing_custom_btn_url', '#contact');
             <div class="pkg-monthly__info">
               <div class="pkg-monthly__title-row">
                 <h4 class="pkg-monthly__name"><?php echo esc_html($m['title']); ?></h4>
-                <span class="pkg-monthly__tag">ماهانه</span>
               </div>
               <p class="pkg-monthly__desc"><?php echo esc_html($m['desc'] ?? ''); ?></p>
             </div>
